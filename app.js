@@ -1,11 +1,19 @@
-const {readFileSync, writeFileSync} = require('fs');
-console.log('start');
-const first = readFileSync('./content/first.txt','utf-8');
-const second = readFileSync('./content/second.txt','utf-8');
+// npm - global command, comes with node
+// npm --v
+// or 
+// npm --version
 
-writeFileSync('./content/result-sync.txt',
-    `Here is the result : ${first}, ${second}`, 
-    {flag:'a'}
-)
-console.log('done with this task');
-console.log('starting the next one');
+// local dependecy - use it in any project
+// npm install -g <packageName>
+// sudo npm install -g <packageName> (mac)
+
+// package.json - manifest file (stores important infor about project/package)
+// manual approach (create package.json in the root, create properties etc)
+// npm init (step by step, press enter to skip)
+// npm init -y (everything default)
+
+const _ = require('lodash')
+
+const items = [1,[2,[3, [4]]]]
+const newItems = _.flattenDeep(items);
+console.log(newItems);
