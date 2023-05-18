@@ -1,27 +1,32 @@
-// npm - global command, comes with node
-// npm --v
-// or 
-// npm --version
+const {readFile} = require('fs');
 
-// local dependecy - use it only in this particular project
-// npm i <packageName>
+const getText = (path) => {
+    return new Promise((resolve, reject)=>{
+        readFile(path,'utf8', (err, data)=> {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(data);
+            }
+        })
+    });
+}
 
-// global dependency - use it in any project
-// npm install -g <packageName>
-// sudo npm install -g <packageName> (mac)
+const start = async() => {
+    const first = await getText('./content/first.txt');
+}
 
-// package.json - manifest file (stores important infor about project/package)
-// manual approach (create package.json in the root, create properties etc)
-// npm init (step by step, press enter to skip)
-// npm init -y (everything default)
 
-const _ = require('lodash')
+start();
 
-const items = [1,[2,[3, [4]]]]
-const newItems = _.flattenDeep(items);
-console.log(newItems);
-console.log("hello people")
 
-//nodemon simply keeps updating server continuously without
-//having us to manually restart
-//prof suggests to use something more serious like mpm2 or something
+
+
+
+
+
+
+// getText('./content/first.txt')
+//     .then(result => console.log(result))
+//     .catch((err) => console.log(err))
