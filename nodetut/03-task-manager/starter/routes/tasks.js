@@ -10,7 +10,7 @@ const {
 } = require('../controllers/tasks')
 
 router.route('/').get(getAllTasks).post(createTask);
-router.route('/:id').get(getTask).post(updateTask).delete(deleteTask);
+router.route('/:id').get(getTask).patch(updateTask).delete(deleteTask);
 
 
 // app.get('/api/v1/tasks')             - get all the tasks
