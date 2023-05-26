@@ -1,12 +1,13 @@
 require('dotenv').config()
 const connectDB = require('./db/connect')
+require('express-async-errors')
 
 //async errors
 
 const express = require('express')
 const app = express()
 
-
+const productsRouter = require('./routes/products')
 const notFoundMiddleware = require('./middleware/not-found')
 const errorMiddleware = require('./middleware/error-handler')
 
@@ -19,6 +20,8 @@ app.use(express.json())
 app.get('/', (req,res)=> {
     res.send(`<h1> Store API</h1><a href="/api/vi/products">products route</a>`)
 })
+
+app.use('/api/v1/products', productsRouter)
 
 //products route
 
