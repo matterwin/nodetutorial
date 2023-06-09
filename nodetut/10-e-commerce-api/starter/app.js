@@ -19,7 +19,9 @@ const notFoundMiddleware = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 
 app.use(morgan('tiny'))
+const cookieParser = require('cookie-parser')
 app.use(express.json())
+app.use(cookieParser(process.env.JWT_SECRET))
 
 app.get('/',(req,res)=>{
     res.send('e-com-api-test');
