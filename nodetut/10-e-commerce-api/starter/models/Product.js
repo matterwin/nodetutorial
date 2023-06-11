@@ -55,6 +55,10 @@ const ProductSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
+    numberOfReviews:{
+        type:Number,
+        default:0
+    },
     user:{
         type:mongoose.Types.ObjectId,
         ref:'User',
@@ -69,5 +73,10 @@ ProductSchema.virtual('reviews', {
     justOne:false,
     // match:{rating:5} only shows ratings that are 5, so like how udemy does it
 });
+
+//deletes product and all its reviews
+ProductSchema.pre('remove', async function(next){
+    await this.model('Review').deleteMany({product:this._id})
+})
 
 module.exports = mongoose.model('Product', ProductSchema)
