@@ -60,6 +60,14 @@ const ProductSchema = new mongoose.Schema({
         ref:'User',
         required:true
     }
-}, {timestamps:true})
+}, {timestamps:true, toJSON:{virtuals:true}, toObject:{virtuals:true}})
+
+ProductSchema.virtual('reviews', {
+    ref:'Review',
+    localField: '_id',
+    foreignField:'product',
+    justOne:false,
+    // match:{rating:5} only shows ratings that are 5, so like how udemy does it
+});
 
 module.exports = mongoose.model('Product', ProductSchema)
